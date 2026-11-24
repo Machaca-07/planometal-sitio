@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PlanoMetal · Muestra gratis del banco de trabajo PM-BAN-0001-C03</title>
+<meta name="description" content="Descargue gratis un plano completo de PlanoMetal: banco de trabajo PM-BAN-0001-C03 con vistas acotadas en milímetros, lista de materiales y lista de cortes.">
+<meta property="og:title" content="Muestra gratis de PlanoMetal">
+<meta property="og:image" content="img/og.png">
+<link rel="icon" href="img/avatar.png">
+<link rel="stylesheet" href="estilos.css">
+<style>
+.capt{background:var(--carbon);color:var(--blanco);padding:48px 0 60px;min-height:calc(100vh - 64px)}
+.capt .cont{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center}
+.capt h1{font-size:36px;line-height:1.15;margin-bottom:14px}
+.capt p{color:#c9cfd6;margin-bottom:12px}
+.capt ul{margin:14px 0 0 18px;color:#c9cfd6}
+.form{background:#fff;color:var(--texto);border-radius:10px;padding:26px}
+.form h2{font-size:22px;margin-bottom:6px}
+.form label{display:block;font-weight:600;font-size:15px;margin:14px 0 6px}
+.form input[type=text],.form input[type=email]{width:100%;padding:12px;border:1px solid #c7cdd4;border-radius:6px;font-size:16px;font-family:inherit}
+.form .chk{display:flex;gap:10px;align-items:flex-start;font-weight:400;font-size:14px;color:var(--suave);margin-top:16px}
+.form .chk input{margin-top:4px}
+.form button{width:100%;margin-top:18px}
+.form .nota{font-size:13px;color:var(--suave);margin-top:12px}
+.form .err{color:#b42318;font-size:14px;margin-top:10px;display:none}
+@media(max-width:860px){.capt .cont{grid-template-columns:1fr}.capt h1{font-size:28px}}
+</style>
+</head>
+<body>
+<header class="top"><div class="cont">
+ <a class="logo-wrap" href="index.html" aria-label="PlanoMetal, inicio"><img class="logo" src="img/logo_oscuro.svg" alt="PlanoMetal"></a>
+ <nav><a href="index.html#precios">Precios</a></nav>
+</div></header>
+
+<section class="capt">
+ <div class="cont">
+  <div>
+   <div class="eyebrow">Muestra gratis</div>
+   <h1>Explore PlanoMetal antes de comprar</h1>
+   <p>Descargue gratis el plano completo del banco de trabajo PM-BAN-0001-C03 (1200 x 600 x 900 mm), tal como viene en la biblioteca.</p>
+   <ul>
+    <li>Lámina con vistas acotadas en milímetros</li>
+    <li>Lista de materiales y lista de cortes</li>
+    <li>Reparto de los cortes en barras</li>
+   </ul>
+   <div class="lamina" style="margin-top:24px"><img src="img/lamina.png" alt="Lámina del banco de trabajo PM-BAN-0001-C03" width="1323" height="935"></div>
+  </div>
+  <form class="form" id="form-muestra" novalidate>
+   <h2>Reciba la muestra</h2>
+   <p style="color:var(--suave);font-size:15px">Banco de trabajo PM-BAN-0001-C03, en PDF.</p>
+   <label for="nombre">Nombre</label>
+   <input type="text" id="nombre" name="FIRSTNAME" autocomplete="given-name" required>
+   <label for="correo">Correo electrónico</label>
+   <input type="email" id="correo" name="EMAIL" autocomplete="email" required>
+   <label class="chk"><input type="checkbox" id="acepto" name="OPT_IN" value="1"> Acepto recibir novedades, recomendaciones y ofertas comerciales de PlanoMetal por correo electrónico. Puedo cancelar mi suscripción en cualquier momento.</label>
+   <button class="btn btn-a" type="submit">Descargar muestra gratis</button>
+   <p class="err" id="err">Escriba su nombre y un correo válido.</p>
+   <p class="nota">Documento digital de referencia. No es un plano de fabricación validado profesionalmente. Tratamos sus datos según la <a href="legal.html#privacidad">política de privacidad</a>.</p>
+  </form>
+ </div>
+</section>
+
+<footer><div class="cont">
+ <div>PlanoMetal · Soporte: a través de la plataforma donde hizo su compra</div>
+ <div><a href="legal.html#terminos">Términos</a><a href="legal.html#privacidad">Privacidad</a><a href="legal.html#aviso">Aviso técnico</a><a href="#" id="abrir-cookies">Cookies</a></div>
+</div></footer>
+
+<div class="cookies" id="cookies" role="dialog" aria-label="Cookies">
+ Usamos cookies necesarias para que la página funcione y, si usted acepta, cookies de medición publicitaria. <a href="legal.html#cookies">Más información</a>.
+ <div class="acc"><button class="btn btn-a" id="ck-si">Aceptar</button><button class="btn btn-b" id="ck-no">Solo necesarias</button></div>
+</div>
+
+<script src="pm.js"></script>
+<script>
+document.getElementById("form-muestra").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const f = e.target, err = document.getElementById("err");
+  const nombre = f.FIRSTNAME.value.trim(), correo = f.EMAIL.value.trim();
+  if (!nombre || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(correo)) { err.style.display = "block"; return; }
+  err.style.display = "none";
+  const btn = f.querySelector("button"); btn.disabled = true; btn.textContent = "Enviando...";
+  if (!pendiente(CONFIG.brevoForm)) {
+    const d = new FormData();
+    d.append("FIRSTNAME", nombre); d.append("EMAIL", correo);
+    d.append("OPT_IN", document.getElementById("acepto").checked ? "1" : "0");
+    d.append("email_address_check", ""); d.append("locale", "es");
+    try { await fetch(CONFIG.brevoForm, { method: "POST", body: d, mode: "no-cors" }); } catch (x) {}
+  }
+  track("Lead", { content_name: "muestra PM-BAN-0001-C03" });
+  setTimeout(() => { location.href = "gracias.html"; }, 300);
+});
+</script>
+</body>
+</html>

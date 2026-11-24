@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>PlanoMetal · Su muestra está lista</title>
+<link rel="icon" href="img/avatar.png">
+<link rel="stylesheet" href="estilos.css">
+<style>
+.gr{background:var(--carbon);color:var(--blanco);padding:52px 0}
+.gr h1{font-size:34px;margin-bottom:10px}
+.gr p{color:#c9cfd6;margin-bottom:22px;max-width:640px}
+.mas{padding:52px 0}
+.mas .cont{display:grid;grid-template-columns:320px 1fr;gap:36px;align-items:center}
+.mas ul{margin:12px 0 22px 18px}
+.mas img{border-radius:8px}
+@media(max-width:820px){.mas .cont{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="top"><div class="cont">
+ <a class="logo-wrap" href="index.html" aria-label="PlanoMetal, inicio"><img class="logo" src="img/logo_oscuro.svg" alt="PlanoMetal"></a>
+</div></header>
+
+<section class="gr">
+ <div class="cont">
+  <h1>Su muestra está disponible</h1>
+  <p>Ya puede abrir el banco de trabajo PM-BAN-0001-C03 y ver cómo organizamos las vistas, las medidas y las listas de materiales y de cortes. Si aceptó recibir correos, también le llegará el enlace por correo.</p>
+  <a class="btn btn-a" href="muestra-planometal.pdf" target="_blank" rel="noopener" data-descarga>Descargar PDF</a>
+ </div>
+</section>
+
+<section class="mas">
+ <div class="cont">
+  <img src="img/profesional.jpg" alt="PlanoMetal Profesional">
+  <div>
+   <h2>¿Quiere explorar más diseños?</h2>
+   <p>PlanoMetal Profesional reúne 30 diseños y 300 configuraciones de mesas, bancos de trabajo y organizadores. Cada plano trae lámina acotada, lista de materiales y lista de cortes.</p>
+   <ul>
+    <li>Calculadora de materiales y costos (Excel)</li>
+    <li>Guía práctica de herrería</li>
+    <li>Guía para interpretar los planos</li>
+   </ul>
+   <a class="btn btn-a" data-checkout="profesional" data-evento="SelectPlan" href="#">Conocer Profesional · US$ 27</a>
+   <p style="margin-top:14px"><a href="index.html#precios">Ver también la colección Esencial (US$ 19)</a></p>
+   <p style="font-size:14px;color:var(--suave);margin-top:16px">Pago único. Referencias digitales para planificación: requieren evaluación técnica antes de fabricar.</p>
+  </div>
+ </div>
+</section>
+
+<footer><div class="cont">
+ <div>PlanoMetal · Soporte: a través de la plataforma donde hizo su compra</div>
+ <div><a href="legal.html#terminos">Términos</a><a href="legal.html#privacidad">Privacidad</a><a href="legal.html#aviso">Aviso técnico</a><a href="#" id="abrir-cookies">Cookies</a></div>
+</div></footer>
+
+<div class="cookies" id="cookies" role="dialog" aria-label="Cookies">
+ Usamos cookies necesarias para que la página funcione y, si usted acepta, cookies de medición publicitaria. <a href="legal.html#cookies">Más información</a>.
+ <div class="acc"><button class="btn btn-a" id="ck-si">Aceptar</button><button class="btn btn-b" id="ck-no">Solo necesarias</button></div>
+</div>
+<script src="pm.js"></script>
+</body>
+</html>
